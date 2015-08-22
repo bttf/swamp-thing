@@ -1,0 +1,18 @@
+{
+  "name": "swamp-thing",
+  "version": "1.0.0",
+  "description": "ludum dare #33 compo entry",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bttf",
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "^0.13.1",
+    "express": "^4.13.3",
+    "mustache": "^2.1.3",
+    "path": "^0.11.14"
+  }
+}
