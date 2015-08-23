@@ -1,14 +1,18 @@
-define(['./swampThing'], function(SwampThing) {
+define(['./swampThing', './floor', './velvetRope'], function(SwampThing, Floor, VelvetRope) {
   function Game(canvas) {
     this.canvas = canvas;
     this.entities = [];
     this.st = new SwampThing(canvas);
+    this.floor = new Floor(canvas);
+    this.velvetRope = new VelvetRope(canvas, this.st);
   }
 
   Game.prototype = {
     init(canvas) {
-      this.st.init();
-      this.entities.push(this.st);
+      this.entities.push(this.floor, this.st, this.velvetRope);
+      this.entities.forEach(function (entity) {
+        entity.init();
+      });
     },
 
     update(time) {

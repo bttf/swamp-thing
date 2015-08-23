@@ -91,7 +91,7 @@ define(function() {
       var y;
       this.frames.forEach(function (frame) {
         if (frame.complete) {
-          y = this.canvas.height - frame.height;
+          y = this.canvas.height - frame.height - 125;
         }
       }, this);
       return y;
