@@ -1,16 +1,21 @@
 define(function() {
   function SwampThing(canvas, x, y) {
-    var assets = ['/img/st_r0.png'];
+    var assets = ['/img/st_r0.png',
+                  '/img/st_r1.png',
+                  '/img/st_r2.png',
+                  '/img/st_l0.png',
+                  '/img/st_l1.png',
+                  '/img/st_l2.png'];
     this.canvas = canvas;
     this.x = x || 0;
     this.y = y || undefined;
     this.frames = [];
     this.frameIndex = 0;
     this.movement = 'still';
-    this.speed = 3;
+    this.speed = 2;
     this.imagesLoaded = false;
-
-    window.test = this;
+    this.lastTick = 0;
+    this.fps = 1000 / 4;
 
     assets.forEach(function (asset, i) {
       var img = new Image();
@@ -25,7 +30,11 @@ define(function() {
     },
 
     update(time) {
-      this.updateMovement();
+      if (time > this.lastTick + this.fps) {
+        this.animate();
+        this.lastTick = time;
+      }
+      this.move();
     },
 
     render(context) {
@@ -46,7 +55,7 @@ define(function() {
       this.movement = 'still';
     },
 
-    updateMovement() {
+    move() {
       switch(this.movement) {
         case 'left':
           this.x -= this.speed;
@@ -55,6 +64,20 @@ define(function() {
           this.x += this.speed;
           break;
         case 'still':
+          break;
+      }
+    },
+
+    animate() {
+      switch(this.movement) {
+        case 'left':
+          this.frameIndex = ++this.frameIndex % 3 + 3;
+          break;
+        case 'right':
+          this.frameIndex = ++this.frameIndex % 3;
+          break;
+        case 'still':
+          this.frameIndex = this.frameIndex < 3 ? 0 : 3;
           break;
       }
     },
