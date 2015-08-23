@@ -28,10 +28,6 @@ define(function() {
       for (var colIndex = 0; colIndex < this.cols; colIndex++) {
         context.drawImage(this.frames[0], colIndex * this.frames[0].width, y);
       }
-      Array(this.rows).forEach(function(undefined, rowIndex) {
-        Array(this.cols).forEach(function(undefined, colIndex) {
-        });
-      });
     },
 
     setImagesLoaded() {

@@ -40,13 +40,13 @@ define(['./swampThing', './floor', './velvetRope'], function(SwampThing, Floor, 
     },
 
     keyUp(e) {
+      e.preventDefault();
       switch(e.keyCode) {
         case 37:
         case 39:
           this.st.moveStill();
           break;
       }
-      e.preventDefault();
     },
   };
 
